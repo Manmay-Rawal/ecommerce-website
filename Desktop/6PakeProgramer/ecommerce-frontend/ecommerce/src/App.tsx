@@ -11,6 +11,7 @@ const Search = lazy(() => import('./pages/Search'));
 const Cart = lazy(() => import('./pages/Cart'));
 const Login = lazy(() => import('./pages/Login'));
 const Shipping = lazy(() => import('./pages/Shipping'));
+const Orders = lazy(() => import('./pages/Orders'));
 
 import Header from "./components/Header";
 
@@ -60,6 +61,7 @@ function App() {
           {/* Login In User Routes */}
           <Route>
             <Route path="/shipping" element={<Shipping />} />
+            <Route path="/orders" element={<Orders />} />
           </Route>
 
 

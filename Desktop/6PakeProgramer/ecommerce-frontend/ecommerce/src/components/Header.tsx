@@ -3,7 +3,7 @@ import { FaSearch, FaCartPlus, FaSignInAlt, FaUser, FaSignOutAlt } from 'react-i
 import { useState } from "react";
 
 
-const user={_id:"" , role:""};
+const user={_id:"jkj" , role:"admin"};
 
 const Header = () => {
 
