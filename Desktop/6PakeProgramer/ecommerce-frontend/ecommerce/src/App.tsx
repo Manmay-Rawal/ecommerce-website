@@ -1,6 +1,6 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { FaSearch, FaCartPlus } from 'react-icons/fa'
+
 import { lazy, Suspense } from "react"
 import Loader from "./components/Loader";
 
@@ -9,7 +9,7 @@ import Loader from "./components/Loader";
 const Home = lazy(() => import('./pages/Home'));
 const Search = lazy(() => import('./pages/Search'));
 const Cart = lazy(() => import('./pages/Cart'));
-
+import Header from "./components/Header";
 
 
 // Admin
@@ -39,7 +39,7 @@ function App() {
   return (
     <Router>
 
-
+      <Header/>
 
       {/* Header */}
 
@@ -48,7 +48,7 @@ function App() {
 
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/search" element={<Cart />} />
+          <Route path="/cart" element={<Cart />} />
 
 
           {/* Admin Route */}
