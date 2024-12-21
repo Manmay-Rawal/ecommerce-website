@@ -1,16 +1,15 @@
 import express from 'express';
+import userRoute from './routes/user.js';
 const app = express();
-// middleware
-app.use(express.json());
-// APIs
-// app.get("/",(req:Request,res:Response)=>{res.send({message:"server is start"}))};
-// app.get("/", (req: Request, res: Response) => {
-//     res.json({ message: "server is start" });
-//   });
-// app.get("/",(req,res)=>res.send({message:"Server is start hii  "}))
+app.get("/", (req, res) => {
+    res.send("API is working with /api/v1");
+}),
+    app.get("/user", (req, res) => {
+        res.send("API is working with /api/v1");
+    }),
+    app.use("/api/v1/user", userRoute);
 //listain
 const PORT = 4000;
-const localhost = "ecommerce";
 app.listen(PORT, () => {
-    console.log(`express is start on http://${localhost}:${PORT}`);
+    console.log(`express is start on http://localhost:${PORT}`);
 });
