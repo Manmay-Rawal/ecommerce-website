@@ -1,28 +1,28 @@
-import express from 'express';
+import express, { Application } from "express";
+import userRoute from "./routes/user.js";
+import { connectDB } from "./utils/features.js";
+import { errorMiddleware } from "./middleware/error.js";
 
-import userRoute from './routes/user.js';
+const app: Application = express();
 
+// Middleware to parse JSON
+app.use(express.json());
 
-const app = express();
+// Connect to the database
+connectDB();
 
-app.get("/",(req,res)=>{
+// Define routes
+app.get("/", (req, res) => {
     res.send("API is working with /api/v1");
-}),
-app.get("/user",(req,res)=>{
-    res.send("API is working with /api/v1");
-}),
-
-
+});
 
 app.use("/api/v1/user", userRoute);
 
+// Error-handling middleware (must come after all routes)
+app.use(errorMiddleware);
 
-
-//listain
-const PORT=4000;
-
-
-app.listen(PORT,()=>{
-    console.log(`express is start on http://localhost:${PORT}`);
-    
-})
+// Start the server
+const PORT = 4000;
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
