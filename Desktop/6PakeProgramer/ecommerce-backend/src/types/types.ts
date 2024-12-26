@@ -1,3 +1,4 @@
+import { NextFunction, Request, Response } from "express";
 
 
 export interface NewUserRequestBody{
@@ -9,3 +10,5 @@ export interface NewUserRequestBody{
     photo:string;
     dob:Date;
 }
+
+export type controllerType = (req: Request, res: Response, next: NextFunction) => Promise<void | Response<any, Record<string, any>>>;

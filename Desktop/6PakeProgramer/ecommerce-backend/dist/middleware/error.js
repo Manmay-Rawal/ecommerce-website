@@ -1,7 +1,9 @@
 export const errorMiddleware = (err, req, res, next) => {
-    console.error(err.stack); // Optional: Log the error stack for debugging
-    res.status(500).json({
+    err.message || (err.message = "Internal server error");
+    err.statusCode || (err.statusCode = 500);
+    res.status(err.statusCode).json({
         success: false,
-        message: err.message || "An unexpected error occurred",
+        message: err.message,
     });
 };
+export const TryCatch = () => () => { };

@@ -1,15 +1,27 @@
 import { Request, Response, NextFunction } from "express";
+import ErrorHandler from "../utils/utlity-class.js";
+import { controllerType } from "../types/types.js";
+import { Promise } from "mongoose";
 
 export const errorMiddleware = (
-    err: Error,
+
+    err: ErrorHandler,
     req: Request,
     res: Response,
     next: NextFunction
 ): void => {
-    console.error(err.stack); // Optional: Log the error stack for debugging
+    // ) => {
+    err.message ||= "Internal server error"
+    err.statusCode ||= 500;
 
-    res.status(500).json({
+    res.status(err.statusCode).json({
         success: false,
-        message: err.message || "An unexpected error occurred",
+        message: err.message,
     });
 };
+
+
+export const TryCatch = (func: controllerType) => 
+    (req: Request, res: Response, next: NextFunction) => {
+        return Promise.resolve(func(req, res, next)).catch(next);
+    };
